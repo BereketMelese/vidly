@@ -1,0 +1,51 @@
+/* Vidly Logo Styling */
+.vidly-logo {
+  display: flex;
+  align-items: center;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #f39c12; /* Bright Yellow */
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Adds depth */
+  transition: all 0.3s ease-in-out;
+}
+
+.vidly-logo-text {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  color: #e74c3c; /* Strong red color for the Vidly text */
+  background: linear-gradient(45deg, #f39c12, #8e44ad); /* Gradient effect */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Hover Effect */
+.vidly-logo:hover .vidly-logo-text {
+  transform: scale(1.1); /* Adds a slight zoom effect when hovering */
+  text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar Styling */
+.navbar-nav .nav-link {
+  font-size: 1.2rem;
+  color: #f0f0f0;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #e74c3c; /* Change to red when hovering */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .vidly-logo {
+    font-size: 1.8rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 1rem;
+  }
+}
