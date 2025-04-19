@@ -4,7 +4,7 @@ import Customers from "./Pages/Customers";
 import Rentals from "./Pages/Rentals";
 import Other from "./Pages/Other";
 import NotFound from "./Pages/NotFound";
-import LoginForm from "./Pages/LoginForm";
+import LoginFormWrapper from "./Pages/LoginFormWrapper";
 import RegisterForm from "./Pages/RegisterForm";
 import MovieFormWrapper from "./components/MovieForm";
 import { ToastContainer } from "react-toastify";
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/customers" element={<Customers />} />
           <Route path="/rentals" element={<Rentals />} />
-          <Route path="/login" element={<LoginForm />} />
+          <Route path="/login" element={<LoginFormWrapper />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/movies/new" element={<MovieFormWrapper />} />
           <Route path="/movies/:id" element={<MovieFormWrapper />} />
