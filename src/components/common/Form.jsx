@@ -15,8 +15,6 @@ class Form extends Component {
     for (let item of error.details) {
       errors[item.path[0]] = item.message;
     }
-    console.log(errors);
-
     return errors;
   };
 
@@ -86,14 +84,13 @@ class Form extends Component {
     );
   }
 
-  renderInput(name, label, type = "text", autoFocus = false) {
+  renderInput(name, label, autoFocus = false) {
     const { data, errors } = this.state;
     return (
       <Input
         autoFocus={autoFocus}
         name={name}
         value={data[name]}
-        type={type}
         label={label}
         onChange={this.handleChange}
         error={errors[name]}

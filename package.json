@@ -10,14 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "font-awesome": "^4.7.0",
     "joi": "^17.13.3",
     "lodash": "^4.17.21",
+    "logger": "^0.0.1",
     "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.0",
+    "react-toastify": "^11.0.5",
     "vidly": "file:"
   },
   "devDependencies": {
