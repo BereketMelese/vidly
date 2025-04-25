@@ -3,6 +3,8 @@ import Joi from "joi";
 import "./loginForm.css";
 import Form from "../components/common/Form";
 import { register } from "../services/userService";
+import { useNavigate } from "react-router-dom";
+import * as authService from "../services/authService";
 
 class RegisterForm extends Form {
   state = {
@@ -23,7 +25,9 @@ class RegisterForm extends Form {
     try {
       await register(this.state.data).then((response) => {
         console.log("Registration successful", response.data);
+        authService.loginWithJwt(response.headers["x-auth-token"]);
       });
+      window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -57,4 +61,7 @@ class RegisterForm extends Form {
   }
 }
 
-export default RegisterForm;
+export default function RegisterFormWrapper() {
+  const navigate = useNavigate();
+  return <RegisterForm navigate={navigate} />;
+}

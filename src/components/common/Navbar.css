@@ -39,6 +39,46 @@
   color: #e74c3c; /* Change to red when hovering */
 }
 
+.user-name-link {
+  font-weight: bold;
+  color: #ff0707 !important; /* Bootstrap's warning yellow */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user-name-link:hover {
+  color: #ff0000 !important; /* Even more vibrant yellow on hover */
+}
+
+.user-name-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #e74c3c;
+  transition: width 0.3s ease;
+}
+
+.user-name-link:hover::after {
+  width: 100%;
+  .user-name-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e74c3c;
+    transition: width 0.3s ease;
+  }
+
+  .user-name-link:hover::after {
+    width: 100%;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .vidly-logo {

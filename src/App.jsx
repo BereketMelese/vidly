@@ -1,26 +1,40 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import NavBar from "./components/common/NavBar";
 import Customers from "./Pages/Customers";
 import Rentals from "./Pages/Rentals";
 import Other from "./Pages/Other";
 import NotFound from "./Pages/NotFound";
-import LoginFormWrapper from "./Pages/LoginFormWrapper";
-import RegisterForm from "./Pages/RegisterForm";
+import LoginFormWrapper from "./Pages/LoginForm";
+import RegisterFormWrapper from "./Pages/RegisterForm";
 import MovieFormWrapper from "./components/MovieForm";
-import { ToastContainer } from "react-toastify";
+import Logout from "./components/Logout";
+import * as authService from "./services/authService";
 import "../node_modules/react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const info = authService.getCurrentUser();
+      setUser(info);
+    };
+
+    fetchUserData();
+  }, []);
   return (
     <>
       <ToastContainer />
-      <NavBar />
+      <NavBar user={user} />
       <div className="content">
         <Routes>
           <Route path="/customers" element={<Customers />} />
           <Route path="/rentals" element={<Rentals />} />
           <Route path="/login" element={<LoginFormWrapper />} />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<RegisterFormWrapper />} />
           <Route path="/movies/new" element={<MovieFormWrapper />} />
           <Route path="/movies/:id" element={<MovieFormWrapper />} />
           <Route path="/movies" element={<Other />}></Route>
