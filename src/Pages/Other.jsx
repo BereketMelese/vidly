@@ -102,6 +102,8 @@ export class Other extends Component {
 
     const { totalCount, data: movies } = this.getPagedData();
 
+    const { user } = this.props;
+
     return (
       <>
         <div className="row">
@@ -113,9 +115,11 @@ export class Other extends Component {
             />
           </div>
           <div className="col">
-            <Link to={"/movies/new"} style={{ marginBottom: 20 }}>
-              <button className="btn login-btn">New Movie</button>
-            </Link>
+            {user && (
+              <Link to={"/movies/new"} style={{ marginBottom: 20 }}>
+                <button className="btn login-btn">New Movie</button>
+              </Link>
+            )}
             <p className="display-6 text-primary ">
               {Object.keys(movies).length !== 0
                 ? `Showing ${totalCount} movies in the database.`

@@ -35,9 +35,17 @@ function App() {
           <Route path="/login" element={<LoginFormWrapper />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterFormWrapper />} />
-          <Route path="/movies/new" element={<MovieFormWrapper />} />
-          <Route path="/movies/:id" element={<MovieFormWrapper />} />
-          <Route path="/movies" element={<Other />}></Route>
+          <Route
+            path="/movies/:id"
+            element={
+              user ? (
+                <MovieFormWrapper user={user} />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+          <Route path="/movies" element={<Other user={user} />}></Route>
           <Route path="/" element={<Navigate to="/movies" replace />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/not-found" replace />} />
