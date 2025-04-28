@@ -10,6 +10,7 @@ import LoginFormWrapper from "./Pages/LoginForm";
 import RegisterFormWrapper from "./Pages/RegisterForm";
 import MovieFormWrapper from "./components/MovieForm";
 import Logout from "./components/Logout";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 import * as authService from "./services/authService";
 import "../node_modules/react-toastify/dist/ReactToastify.css";
 
@@ -35,16 +36,9 @@ function App() {
           <Route path="/login" element={<LoginFormWrapper />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterFormWrapper />} />
-          <Route
-            path="/movies/:id"
-            element={
-              user ? (
-                <MovieFormWrapper user={user} />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          />
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path="/movies/:id" element={<MovieFormWrapper />} />
+          </Route>
           <Route path="/movies" element={<Other user={user} />}></Route>
           <Route path="/" element={<Navigate to="/movies" replace />} />
           <Route path="/not-found" element={<NotFound />} />

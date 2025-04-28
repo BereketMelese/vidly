@@ -21,9 +21,7 @@ class LoginForm extends Form {
     try {
       const { data } = this.state;
       const { email, password } = data;
-      await authService.login(email, password).then(() => {
-        console.log("Login successful");
-      });
+      await authService.login(email, password);
       window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
