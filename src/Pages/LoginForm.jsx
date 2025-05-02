@@ -3,7 +3,7 @@ import Joi from "joi";
 import "./loginForm.css";
 import Form from "../components/common/Form";
 import * as authService from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 class LoginForm extends Form {
   state = {
@@ -22,7 +22,12 @@ class LoginForm extends Form {
       const { data } = this.state;
       const { email, password } = data;
       await authService.login(email, password);
-      window.location = "/";
+      const { location } = this.props;
+      const from = location.state?.from?.pathname || "/movies";
+      console.log("Redirecting to:", from);
+
+      window.location = from;
+      // navigate(from, { replace: true });
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -33,6 +38,7 @@ class LoginForm extends Form {
   };
 
   render() {
+    if (authService.getCurrentUser()) return <Navigate to="/" />;
     return (
       <div className="container">
         <div className="row justify-content-center mt-5">
@@ -56,5 +62,6 @@ class LoginForm extends Form {
 
 export default function LoginFormWrapper() {
   const navigate = useNavigate();
-  return <LoginForm navigate={navigate} />;
+  const location = useLocation();
+  return <LoginForm navigate={navigate} location={location} />;
 }

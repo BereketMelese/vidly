@@ -1,8 +1,14 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import authService from "../../services/authService";
 
-const ProtectedRoute = ({ user }) => {
-  if (!user) return <Navigate to="/login" replace />;
+const ProtectedRoute = () => {
+  const location = useLocation();
+  const user = authService.getCurrentUser();
+
+  if (!user) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
   return <Outlet context={{ user }} />;
 };

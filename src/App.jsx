@@ -36,7 +36,7 @@ function App() {
           <Route path="/login" element={<LoginFormWrapper />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterFormWrapper />} />
-          <Route element={<ProtectedRoute user={user} />}>
+          <Route element={<ProtectedRoute />}>
             <Route path="/movies/:id" element={<MovieFormWrapper />} />
           </Route>
           <Route path="/movies" element={<Other user={user} />}></Route>
